@@ -12,32 +12,32 @@ from PyQt4 import QtCore
 rc_file_name = environ.get('HOME') + '/.config/apt-notifierrc'
 message_status = "not displayed"
 
-script = '''#!/bin/sh
-locale|grep ^LANG=|cut -f2 -d=|cut -f1 -d_
-'''
-script_file = tempfile.NamedTemporaryFile('wt')
-script_file.write(script)
-script_file.flush()
-run = subprocess.Popen(["echo -n `sh %s`" % script_file.name],shell=True, stdout=subprocess.PIPE)
-locale = run.stdout.read(128)
-script_file.close()
+def set_translations():
+    script = '''#!/bin/sh
+    locale|grep ^LANG=|cut -f2 -d=|cut -f1 -d_
+    '''
+    script_file = tempfile.NamedTemporaryFile('wt')
+    script_file.write(script)
+    script_file.flush()
+    run = subprocess.Popen(["echo -n `sh %s`" % script_file.name],shell=True, stdout=subprocess.PIPE)
+    locale = run.stdout.read(128)
+    script_file.close()
 
-tooltip_0_updates_available = u"0 updates available"
-tooltip_1_new_update_available = u"1 new update available"
-tooltip_multiple_new_updates_available = u" new updates available"
-popup_title = u"Updates"
-popup_msg_1_new_update_available = u"You have 1 new update available"
-popup_msg_multiple_new_updates_available_begin = u"You have "
-popup_msg_multiple_new_updates_available_end = u" new updates available"
-Upgrade_using_Synaptic = u"Upgrade using Synaptic"
-View_and_Upgrade = u"View and Upgrade"
-Hide_until_updates_available = u"Hide until updates available"
-Quit_Apt_Notifier = u"Quit Apt-Notifier"
-Apt_Notifier_Help = u"Apt-Notifier Help"
-Synaptic_Help = u"Synaptic Help"
-Apt_Notifier_Preferences = u"Apt Notifier Preferences"
+    global tooltip_0_updates_available
+    global tooltip_1_new_update_available
+    global tooltip_multiple_new_updates_available
+    global popup_title
+    global popup_msg_1_new_update_available
+    global popup_msg_multiple_new_updates_available_begin
+    global popup_msg_multiple_new_updates_available_end
+    global Upgrade_using_Synaptic
+    global View_and_Upgrade
+    global Hide_until_updates_available
+    global Quit_Apt_Notifier
+    global Apt_Notifier_Help
+    global Synaptic_Help
+    global Apt_Notifier_Preferences    
 
-if locale == "ca":
     tooltip_0_updates_available = u"0 updates available"
     tooltip_1_new_update_available = u"1 new update available"
     tooltip_multiple_new_updates_available = u" new updates available"
@@ -53,137 +53,152 @@ if locale == "ca":
     Synaptic_Help = u"Synaptic Help"
     Apt_Notifier_Preferences = u"Apt Notifier Preferences"
 
-elif locale == "de":
-    tooltip_0_updates_available = u"0 Updates verfügbar"
-    tooltip_1_new_update_available = u"1 neues Update verfügbar"
-    tooltip_multiple_new_updates_available = u" neue Updates verfügbar"
-    popup_title = u"Updates"
-    popup_msg_1_new_update_available = u"Sie haben ein neues Update verfügbar"
-    popup_msg_multiple_new_updates_available_begin = u"Sie haben "
-    popup_msg_multiple_new_updates_available_end = u" neue Updates verfügbar"
-    Upgrade_using_Synaptic = u"Durch Synaptic aufrüsten"
-    View_and_Upgrade = u"Anschauen and aufrüsten"
-    Hide_until_updates_available = u"Verstercken bis Updates verfügbar"
-    Quit_Apt_Notifier = u"Apt-Notifier abbrechen "
-    Apt_Notifier_Help = u"Apt-Notifier Hilfe"
-    Synaptic_Help = u"Synaptic Hilfe"
-    Apt_Notifier_Preferences = u"Apt Notifier Einstellungen"
+    if locale == "ca":
+        tooltip_0_updates_available = u"No hi ha actualitzacions disponibles"
+        tooltip_1_new_update_available = u"1 actualització disponible"
+        tooltip_multiple_new_updates_available = u" noves actualitzacions disponibles"
+        popup_title = u"Actualitzacions"
+        popup_msg_1_new_update_available = u"Teniu 1 actualització disponible"
+        popup_msg_multiple_new_updates_available_begin = u"Teniu "
+        popup_msg_multiple_new_updates_available_end = u" noves actualitzacions disponibles"
+        Upgrade_using_Synaptic = u"Actualitza usant Synaptic"
+        View_and_Upgrade = u"Veure i actualitzar"
+        Hide_until_updates_available = u"Amagar fins que hi hagi actualitzacions disponibles"
+        Quit_Apt_Notifier = u"Surt d'Apt-Notifier"
+        Apt_Notifier_Help = u"Ajuda d'Apt-Notifier"
+        Synaptic_Help = u"Ajuda de Synaptic"
+        Apt_Notifier_Preferences = u"Preferències d'Apt Notifier"
 
-elif locale == "el":
-    tooltip_0_updates_available = u"0 updates available"
-    tooltip_1_new_update_available = u"1 new update available"
-    tooltip_multiple_new_updates_available = u" neue updates available"
-    popup_title = u"Updates"
-    popup_msg_1_new_update_available = u"You have 1 new update available"
-    popup_msg_multiple_new_updates_available_begin = u"You have "
-    popup_msg_multiple_new_updates_available_end = u" new updates available"
-    Upgrade_using_Synaptic = u"Upgrade using Synaptic"
-    View_and_Upgrade = u"View and Upgrade"
-    Hide_until_updates_available = u"Hide until updates available"
-    Quit_Apt_Notifier = u"Quit Apt-Notifier"
-    Apt_Notifier_Help = u"Apt-Notifier Help"
-    Synaptic_Help = u"Synaptic Help"
-    Apt_Notifier_Preferences = u"Apt Notifier Preferences"
+    elif locale == "de":
+        tooltip_0_updates_available = u"0 Updates verfügbar"
+        tooltip_1_new_update_available = u"1 neues Update verfügbar"
+        tooltip_multiple_new_updates_available = u" neue Updates verfügbar"
+        popup_title = u"Updates"
+        popup_msg_1_new_update_available = u"Sie haben ein neues Update verfügbar"
+        popup_msg_multiple_new_updates_available_begin = u"Sie haben "
+        popup_msg_multiple_new_updates_available_end = u" neue Updates verfügbar"
+        Upgrade_using_Synaptic = u"Durch Synaptic aufrüsten"
+        View_and_Upgrade = u"Anschauen and aufrüsten"
+        Hide_until_updates_available = u"Verstercken bis Updates verfügbar"
+        Quit_Apt_Notifier = u"Apt-Notifier abbrechen "
+        Apt_Notifier_Help = u"Apt-Notifier Hilfe"
+        Synaptic_Help = u"Synaptic Hilfe"
+        Apt_Notifier_Preferences = u"Apt Notifier Einstellungen"
 
-elif locale == "es":
-    tooltip_0_updates_available = u"0 actualizaciones disponibles"
-    tooltip_1_new_update_available = u"1 nueva actualización disponible"
-    tooltip_multiple_new_updates_available = u" nuevas actualizaciones disponibles"
-    popup_title = u"Updates"
-    popup_msg_1_new_update_available = u"Tiene 1 nueva actualización disponible"
-    popup_msg_multiple_new_updates_available_begin = u"Tiene "
-    popup_msg_multiple_new_updates_available_end = u" nuevas actualizaciones disponibles"
-    Upgrade_using_Synaptic = u"Actualizar usando Synaptic"
-    View_and_Upgrade = u"Ver y Actualizar"
-    Hide_until_updates_available = u"Ocultar hasta que haya actualizaciones"
-    Quit_Apt_Notifier = u"Salir de Apt-Notifier"
-    Apt_Notifier_Help = u"Ayuda de Apt-Notifier"
-    Synaptic_Help = u"Ayuda de Synaptic"
-    Apt_Notifier_Preferences = u"Preferencias de Apt Notifier"
+    elif locale == "el":
+        tooltip_0_updates_available = u"0 διαθέσιμες ενημερώσεις"
+        tooltip_1_new_update_available = u"0 διαθέσιμες ενημερώσεις"
+        tooltip_multiple_new_updates_available = u" νέες διαθέσιμες ενημερώσεις"
+        popup_title = u"Ενημερώσεις"
+        popup_msg_1_new_update_available = u"Έχετε 1 νέα διαθέσιμη ενημέρωση"
+        popup_msg_multiple_new_updates_available_begin = u"Έχετε "
+        popup_msg_multiple_new_updates_available_end = u" νέες διαθέσιμες ενημερώσεις"
+        Upgrade_using_Synaptic = u"Αναβάθμιση χρησιμοποιώντας το Synaptic"
+        View_and_Upgrade = u"Προβολή και Αναβάθμιση"
+        Hide_until_updates_available = u"Απόκρυψη μέχρι διαθέσιμες ενημερώσεις"
+        Quit_Apt_Notifier = u"Κλείστε το Apt-Notifier"
+        Apt_Notifier_Help = u"Apt-Notifier Βοήθεια"
+        Synaptic_Help = u"Synaptic Βοήθεια"
+        Apt_Notifier_Preferences = u"Apt Notifier Προτιμήσεις"
 
-elif locale == "fr":
-    tooltip_0_updates_available = u"0 mises à jour disponibles"
-    tooltip_1_new_update_available = u"1 nouvelle mise à jour disponible"
-    tooltip_multiple_new_updates_available = u" nouvelles mises à jour disponibles"
-    popup_title = u"Mises à jour"
-    popup_msg_1_new_update_available = u"Vous avez une nouvelle mise à jour disponible"
-    popup_msg_multiple_new_updates_available_begin = u"Vous avez "
-    popup_msg_multiple_new_updates_available_end = u" nouvelles mises à jour disponibles"
-    Upgrade_using_Synaptic = u"Mettre à niveau avec Synaptic"
-    View_and_Upgrade = u"Voir et mettre à niveau"
-    Hide_until_updates_available = u"Cacher jusqu'à ce que des mises à niveau soient disponibles"
-    Quit_Apt_Notifier = u"Annuler Apt-Notifier"
-    Apt_Notifier_Help = u"Aide sur Apt-notifier"
-    Synaptic_Help = u"Aide sur Synaptic"
-    Apt_Notifier_Preferences = u"Préferences pour Apt Notifier"
+    elif locale == "es":
+        tooltip_0_updates_available = u"0 actualizaciones disponibles"
+        tooltip_1_new_update_available = u"1 nueva actualización disponible"
+        tooltip_multiple_new_updates_available = u" nuevas actualizaciones disponibles"
+        popup_title = u"Updates"
+        popup_msg_1_new_update_available = u"Tiene 1 nueva actualización disponible"
+        popup_msg_multiple_new_updates_available_begin = u"Tiene "
+        popup_msg_multiple_new_updates_available_end = u" nuevas actualizaciones disponibles"
+        Upgrade_using_Synaptic = u"Actualizar usando Synaptic"
+        View_and_Upgrade = u"Ver y Actualizar"
+        Hide_until_updates_available = u"Ocultar hasta que haya actualizaciones"
+        Quit_Apt_Notifier = u"Salir de Apt-Notifier"
+        Apt_Notifier_Help = u"Ayuda de Apt-Notifier"
+        Synaptic_Help = u"Ayuda de Synaptic"
+        Apt_Notifier_Preferences = u"Preferencias de Apt Notifier"
 
-elif locale == "it":
-    tooltip_0_updates_available = u"0 aggiornamenti disponibili"
-    tooltip_1_new_update_available = u"1 nuovo aggiornamento disponibile"
-    tooltip_multiple_new_updates_available = u" nuovi aggiornamenti disponibili"
-    popup_title = u"Aggiornamenti"
-    popup_msg_1_new_update_available = u"Hai 1 nuovo aggiornamento disponibile"
-    popup_msg_multiple_new_updates_available_begin = u"Hai "
-    popup_msg_multiple_new_updates_available_end = u" nuovi aggiornamenti disponibili"
-    Upgrade_using_Synaptic = u"Aggiornare tramite Synaptic"
-    View_and_Upgrade = u"Mostra e aggiorna"
-    Hide_until_updates_available = u"Nascondi finchè non hai aggiornamenti disponibili"
-    Quit_Apt_Notifier = u"Chiudi Apt-Notifier"
-    Apt_Notifier_Help = u"Aiuto su Apt-notifier"
-    Synaptic_Help = u"Aiuto su Synaptic"
-    Apt_Notifier_Preferences = u"Preferenze per Apt Notifier"
+    elif locale == "fr":
+        tooltip_0_updates_available = u"0 mises à jour disponibles"
+        tooltip_1_new_update_available = u"1 nouvelle mise à jour disponible"
+        tooltip_multiple_new_updates_available = u" nouvelles mises à jour disponibles"
+        popup_title = u"Mises à jour"
+        popup_msg_1_new_update_available = u"Vous avez une nouvelle mise à jour disponible"
+        popup_msg_multiple_new_updates_available_begin = u"Vous avez "
+        popup_msg_multiple_new_updates_available_end = u" nouvelles mises à jour disponibles"
+        Upgrade_using_Synaptic = u"Mettre à niveau avec Synaptic"
+        View_and_Upgrade = u"Voir et mettre à niveau"
+        Hide_until_updates_available = u"Cacher jusqu'à ce que des mises à niveau soient disponibles"
+        Quit_Apt_Notifier = u"Annuler Apt-Notifier"
+        Apt_Notifier_Help = u"Aide sur Apt-notifier"
+        Synaptic_Help = u"Aide sur Synaptic"
+        Apt_Notifier_Preferences = u"Préferences pour Apt Notifier"
 
-elif locale == "ja":
-    tooltip_0_updates_available = u"0 新たな更新はありません"
-    tooltip_1_new_update_available = u"1 つの新たな更新が入手可能です"
-    tooltip_multiple_new_updates_available = u"つの新たな更新が入手可能です"
-    popup_title = u"更新"
-    popup_msg_1_new_update_available = u"1 つの新たな更新が入手可能です"
-    popup_msg_multiple_new_updates_available_begin = u""
-    popup_msg_multiple_new_updates_available_end = u"つの新たな更新が入手可能です"
-    Upgrade_using_Synaptic = u"更新に Synaptic を使用する"
-    View_and_Upgrade = u"表示・更新"
-    Hide_until_updates_available = u"入手可能な更新の非表示"
-    Quit_Apt_Notifier = u"Apt-Notifier を終了"
-    Apt_Notifier_Help = u"Apt-Notifier ヘルプ"
-    Synaptic_Help = u"Synaptic ヘルプ"
-    Apt_Notifier_Preferences = u"Apt Notifier 設定"
+    elif locale == "it":
+        tooltip_0_updates_available = u"0 aggiornamenti disponibili"
+        tooltip_1_new_update_available = u"1 nuovo aggiornamento disponibile"
+        tooltip_multiple_new_updates_available = u" nuovi aggiornamenti disponibili"
+        popup_title = u"Aggiornamenti"
+        popup_msg_1_new_update_available = u"Hai 1 nuovo aggiornamento disponibile"
+        popup_msg_multiple_new_updates_available_begin = u"Hai "
+        popup_msg_multiple_new_updates_available_end = u" nuovi aggiornamenti disponibili"
+        Upgrade_using_Synaptic = u"Aggiornare tramite Synaptic"
+        View_and_Upgrade = u"Mostra e aggiorna"
+        Hide_until_updates_available = u"Nascondi finchè non hai aggiornamenti disponibili"
+        Quit_Apt_Notifier = u"Chiudi Apt-Notifier"
+        Apt_Notifier_Help = u"Aiuto su Apt-notifier"
+        Synaptic_Help = u"Aiuto su Synaptic"
+        Apt_Notifier_Preferences = u"Preferenze per Apt Notifier"
 
-elif locale == "nl":
-    tooltip_0_updates_available = u"0 updates available"
-    tooltip_1_new_update_available = u"1 new update available"
-    tooltip_multiple_new_updates_available = u" new updates available"
-    popup_title = u"Updates"
-    popup_msg_1_new_update_available = u"You have 1 new update available"
-    popup_msg_multiple_new_updates_available_begin = u"You have "
-    popup_msg_multiple_new_updates_available_end = u" new updates available"
-    Upgrade_using_Synaptic = u"Upgrade using Synaptic"
-    View_and_Upgrade = u"View and Upgrade"
-    Hide_until_updates_available = u"Hide until updates available"
-    Quit_Apt_Notifier = u"Quit Apt-Notifier"
-    Apt_Notifier_Help = u"Apt-Notifier Help"
-    Synaptic_Help = u"Synaptic Help"
-    Apt_Notifier_Preferences = u"Apt Notifier Preferences"
+    elif locale == "ja":
+        tooltip_0_updates_available = u"0 新たな更新はありません"
+        tooltip_1_new_update_available = u"1 つの新たな更新が入手可能です"
+        tooltip_multiple_new_updates_available = u"つの新たな更新が入手可能です"
+        popup_title = u"更新"
+        popup_msg_1_new_update_available = u"1 つの新たな更新が入手可能です"
+        popup_msg_multiple_new_updates_available_begin = u""
+        popup_msg_multiple_new_updates_available_end = u"つの新たな更新が入手可能です"
+        Upgrade_using_Synaptic = u"更新に Synaptic を使用する"
+        View_and_Upgrade = u"表示・更新"
+        Hide_until_updates_available = u"入手可能な更新の非表示"
+        Quit_Apt_Notifier = u"Apt-Notifier を終了"
+        Apt_Notifier_Help = u"Apt-Notifier ヘルプ"
+        Synaptic_Help = u"Synaptic ヘルプ"
+        Apt_Notifier_Preferences = u"Apt Notifier 設定"
 
-elif locale == "sv":
-    tooltip_0_updates_available = u"0 uppdateringar tillgängliga"
-    tooltip_1_new_update_available = u"1 ny updatering tillgänglig"
-    tooltip_multiple_new_updates_available = u" nya uppdateringar tillgängliga"
-    popup_title = u"Updateringar"
-    popup_msg_1_new_update_available = u"Du har 1 ny uppdatering tillgänglig"
-    popup_msg_multiple_new_updates_available_begin = u"Du har "
-    popup_msg_multiple_new_updates_available_end = u" nya uppdatering tillgänglig"
-    Upgrade_using_Synaptic = u"Uppgradera med Synaptic"
-    View_and_Upgrade = u"Granska och Uppgradera"
-    Hide_until_updates_available = u"Göm tills uppdateringar är tillgängliga"
-    Quit_Apt_Notifier = u"Avsluta Apt-Notifier"
-    Apt_Notifier_Help = u"Apt-Notifier Hjälp"
-    Synaptic_Help = u"Synaptic Hjälp"
-    Apt_Notifier_Preferences = u"Apt Notifier Inställningar"
+    elif locale == "nl":
+        tooltip_0_updates_available = u"0 updates available"
+        tooltip_1_new_update_available = u"1 new update available"
+        tooltip_multiple_new_updates_available = u" new updates available"
+        popup_title = u"Updates"
+        popup_msg_1_new_update_available = u"You have 1 new update available"
+        popup_msg_multiple_new_updates_available_begin = u"You have "
+        popup_msg_multiple_new_updates_available_end = u" new updates available"
+        Upgrade_using_Synaptic = u"Upgrade using Synaptic"
+        View_and_Upgrade = u"View and Upgrade"
+        Hide_until_updates_available = u"Hide until updates available"
+        Quit_Apt_Notifier = u"Quit Apt-Notifier"
+        Apt_Notifier_Help = u"Apt-Notifier Help"
+        Synaptic_Help = u"Synaptic Help"
+        Apt_Notifier_Preferences = u"Apt Notifier Preferences"
 
-else:
-    pass
+    elif locale == "sv":
+        tooltip_0_updates_available = u"0 uppdateringar tillgängliga"
+        tooltip_1_new_update_available = u"1 ny updatering tillgänglig"
+        tooltip_multiple_new_updates_available = u" nya uppdateringar tillgängliga"
+        popup_title = u"Updateringar"
+        popup_msg_1_new_update_available = u"Du har 1 ny uppdatering tillgänglig"
+        popup_msg_multiple_new_updates_available_begin = u"Du har "
+        popup_msg_multiple_new_updates_available_end = u" nya uppdatering tillgänglig"
+        Upgrade_using_Synaptic = u"Uppgradera med Synaptic"
+        View_and_Upgrade = u"Granska och Uppgradera"
+        Hide_until_updates_available = u"Göm tills uppdateringar är tillgängliga"
+        Quit_Apt_Notifier = u"Avsluta Apt-Notifier"
+        Apt_Notifier_Help = u"Apt-Notifier Hjälp"
+        Synaptic_Help = u"Synaptic Hjälp"
+        Apt_Notifier_Preferences = u"Apt Notifier Inställningar"
 
+    else:
+        pass
 
 # Check for updates, using subprocess.Popen
 def check_updates():
@@ -274,16 +289,16 @@ def viewandupgrade():
 
     case $(locale|grep ^LANG=|cut -f2 -d=|cut -f1 -d_) in
 
-      ca)    window_title="MX Apt Notifier--View and Upgrade, previewing: apt-get "
-             use_apt_get_dash_dash_yes="use apt-get's --yes option for "
-             auto_close_term_window1="automatically close terminal window when apt-get "
-             auto_close_term_window2=" complete"
-             switch_to1="switch to 'apt-get "
+      ca)    window_title="MX Apt Notifier--Veure i actualitzar, vista prèvia: apt-get "
+             use_apt_get_dash_dash_yes="usa l'opció d'apt-get --yes per a "
+             auto_close_term_window1="tanca automàticament la finestra del terminal quan s'ha completat apt-get "
+             auto_close_term_window2=""
+             switch_to1="canvia a 'apt-get "
              switch_to2=""
-             done0="" 
-             done1=' complete (or was canceled)"' 
-             done2="'this terminal window can now be closed '" 
-             done3="'(press any key to close)'" ;;
+             done0="s'ha completat (o cancel·lat) "
+             done1='"'
+             done2="'ara podeu tancar la finestra '"
+             done3="'(prement qualsevol tecla)'" ;;
 
       de)    window_title="MX Apt Notifier--Anschauen and aufrüsten, vorprüfend: apt-get "
              use_apt_get_dash_dash_yes="Option --yes von apt-get's benutzen bei "
@@ -296,16 +311,16 @@ def viewandupgrade():
              done2="'Dieses Shellfenster darf jetzt geschlossen werden '" 
              done3="'(drücken Sie eine beliebige Taste zu schliessen)'" ;;
 
-      el)    window_title="MX Apt Notifier--View and Upgrade, previewing: apt-get "
-             use_apt_get_dash_dash_yes="use apt-get --yes option for "
-             auto_close_term_window1="automatically close terminal window when apt-get "
-             auto_close_term_window2=" complete"
-             switch_to1="switch to 'apt-get "
+      el)    window_title="MX Apt Notifier--Προβολή και Αναβάθμιση, προεπισκόπηση: apt-get "
+             use_apt_get_dash_dash_yes="χρησιμοποιήσετε την επιλογή του apt-get --yes option για την "
+             auto_close_term_window1="Να κλείσει αυτόματα το παράθυρο τερματικού όταν το apt-get "
+             auto_close_term_window2=" έχει ολοκληρωθεί"
+             switch_to1="αλλαγή σε 'apt-get "
              switch_to2=""
              done0="" 
-             done1=' complete (or was canceled)"' 
-             done2="'this terminal window can now be closed '" 
-             done3="'(press any key to close)'" ;;
+             done1=' ολοκληρώθηκε (ή ακυρώθηκε)"' 
+             done2="'Αυτό το παράθυρο τερματικού μπορεί να κλείσει '" 
+             done3="'(πατήστε οποιοδήποτε πλήκτρο να κλείσει)'" ;;
 
       es)    window_title="MX Apt Notifier--Ver y Actualizar, vista previa: apt-get "
              use_apt_get_dash_dash_yes="usar la opción --yes de apt-get para "
@@ -391,32 +406,87 @@ def viewandupgrade():
         Title="--title='""$(grep -o MX-[1-9][0-9] /etc/issue|cut -c1-2)"" apt-notifer: apt-get "$UpgradeType"'" 
         if (xprop -root | grep -q -i kde)
           then
-            # running KDE
-            # can't get su-to-root to work in newer KDE's, so use kdesu for authentication  
-            # if x-terminal-emulator is set to xfce4-terminal.wrapper, use xfce4-terminal instead 
-            #   because the --hold option doesn't work with the wrapper. Also need to enclose the
-            #   apt-get command in single quotes.
-            # if x-terminal-emulator is set to xterm, use konsole instead, if it's available (it should be)
+
+            # Running KDE
+            #
+            # Can't get su-to-root to work in newer KDE's, so use kdesu for 
+            # authentication.
+            #  
+            # If x-terminal-emulator is set to xfce4-terminal.wrapper, use     
+            # xfce4-terminal instead because the --hold option doesn't work with
+            # the wrapper. Also need to enclose the apt-get command in single 
+            # quotes.
+            #
+            # If x-terminal-emulator is set to xterm, use konsole instead, if 
+            # it's available (it should be).
+
             case $(readlink -e /usr/bin/x-terminal-emulator | xargs basename) in
-              konsole               )                                             kdesu -c "konsole                               -e  bash $TMP/upgradeScript " ;;
-              xfce4-terminal.wrapper)                                             kdesu -c "xfce4-terminal $Geometry $Icon $Title -e 'bash $TMP/upgradeScript'" ;;
-              xterm                 ) [ ! -e /usr/bin/konsole ]        ||         kdesu -c "konsole                               -e  bash $TMP/upgradeScript "
-                                      [   -e /usr/bin/konsole ]        ||         kdesu -c "xterm                                 -e  bash $TMP/upgradeScript " ;;
-              *                     )                                                                                                                           ;;
-            esac  
+
+                             konsole) kdesu -c "konsole \
+                                      -e bash $TMP/upgradeScript"
+                                      sleep 5
+                                      ;;
+
+              xfce4-terminal.wrapper) kdesu -c "xfce4-terminal \
+                                      $Geometry $Icon $Title \
+                                      -e 'bash $TMP/upgradeScript'"
+                                      ;;
+
+                               xterm) if [ -e /usr/bin/konsole ]
+                                        then
+                                          kdesu -c "konsole \
+                                          -e bash $TMP/upgradeScript"
+                                          sleep 5
+                                        else
+                                          kdesu -c "xterm \
+                                          -e bash $TMP/upgradeScript"
+                                      fi
+                                      ;;
+
+                                   *) :
+                                      ;;
+            esac
+
           else
-            # running a non KDE desktop
-            # use su-to-root for authentication, it should end up using gksu
-            # if x-terminal-emulator is set to xfce4-terminal.wrapper, use xfce4-terminal instead 
-            #   because the --hold option doesn't work with the wrapper. Also need to enclose the
-            #   apt-get command in single quotes.
-            # if x-terminal-emulator is set to xterm, use xfce4-terminal instead, if it's available (it is in MX) 
+
+            # Running a non KDE desktop
+            # 
+            # Use su-to-root for authentication, it should end up using gksu.
+            # 
+            # If x-terminal-emulator is set to xfce4-terminal.wrapper, use 
+            # xfce4-terminal instead because the --hold option doesn't work
+            # with the wrapper. Also need to enclose the apt-get command in
+            # single quotes.
+            #
+            # If x-terminal-emulator is set to xterm, use xfce4-terminal 
+            # instead, if it's available (it is in MX)
+
             case $(readlink -e /usr/bin/x-terminal-emulator | xargs basename) in
-              konsole               )                                     su-to-root -X -c "konsole                               -e  bash $TMP/upgradeScript " ;;
-              xfce4-terminal.wrapper)                                     su-to-root -X -c "xfce4-terminal $Geometry $Icon $Title -e 'bash $TMP/upgradeScript'" ;;
-              xterm                 ) [ ! -e /usr/bin/xfce4-terminal ] || su-to-root -X -c "xfce4-terminal $Geometry $Icon $Title -e 'bash $TMP/upgradeScript'"
-                                      [   -e /usr/bin/xfce4-terminal ] || su-to-root -X -c "xterm                                 -e  bash $TMP/upgradeScript " ;;             
-              *                     )                                                                                                                           ;;
+
+                             konsole) su-to-root -X -c "konsole \
+                                      -e  bash $TMP/upgradeScript"
+                                      sleep 5
+                                      ;;
+
+              xfce4-terminal.wrapper) su-to-root -X -c "xfce4-terminal \
+                                      $Geometry $Icon $Title \
+                                      -e 'bash $TMP/upgradeScript'"
+                                      ;;
+
+                               xterm) if [ -e /usr/bin/xfce4-terminal ]
+                                        then
+                                          su-to-root -X -c "xfce4-terminal \
+                                          $Geometry $Icon $Title \
+                                          -e 'bash $TMP/upgradeScript'"
+                                        else
+                                          su-to-root -X -c "xterm \
+                                          -e  bash $TMP/upgradeScript"
+                                      fi
+                                      ;;
+
+                                   *) :
+                                      ;;
+
             esac
         fi
         ;;
@@ -557,7 +627,7 @@ def viewandupgrade():
         fi
 
         DoUpgrade $(tail -n1 "$TMP"/results)
-        sleep 5
+
         rm -rf "$TMP"
 
       done
@@ -674,13 +744,13 @@ def aptnotifier_prefs():
 
     case $(locale|grep ^LANG=|cut -f2 -d=|cut -f1 -d_) in
 
-         ca) window_title="MX Apt Notifier preferences"
-             frame_upgrade_behaviour="  upgrade behaviour   (also affects notification count)   "
-             frame_left_click_behaviour="  left-click behaviour   (when updates are available)   "
-             left_click_Synaptic="opens Synaptic "
-             left_click_ViewandUpgrade='opens MX Apt Notifier "View and Upgrade" window'
-             use_apt_get_dash_dash_yes="use apt-get's --yes option for upgrade/dist-upgrade"
-             auto_close_term_window_when_complete="automatically close terminal window when apt-get upgrade/dist-upgrade complete" ;;
+         ca) window_title="Preferències de MX Apt Notifier"
+             frame_upgrade_behaviour="  comportament d'actualitzacions (també afecta el compte d'actualitzacions)   "
+             frame_left_click_behaviour="  comportament del clic esquerre (quan hi ha actualitzacions)   "
+             left_click_Synaptic="obre Synaptic "
+             left_click_ViewandUpgrade='obre la finestra de MX Apt Notifier "Veure i actualitzar"'
+             use_apt_get_dash_dash_yes="usa l'opció d'apt-get --yes per a upgrade/dist-upgrade"
+             auto_close_term_window_when_complete="tanca automàticament la finestra del terminal quan s'ha completat apt-get upgrade/dist-upgrade" ;;
 
          de) window_title="MX Apt Notifier Einstellungen"
              frame_upgrade_behaviour="  Upgrade-Verhalten (beeinflusst auch die Zählung der Meldung)   "
@@ -690,13 +760,13 @@ def aptnotifier_prefs():
              use_apt_get_dash_dash_yes="Option --yes von apt-get's benutzen bei upgrade/dist-upgrade"
              auto_close_term_window_when_complete="Shellfenster automatiisch schliessen nach Ende von apt-get upgrade/dist-upgrade" ;;
 
-         el) window_title="MX Apt Notifier preferences"
-             frame_upgrade_behaviour="  upgrade behaviour   (also affects notification count)   "
-             frame_left_click_behaviour="  left-click behaviour   (when updates are available)   "
-             left_click_Synaptic="opens Synaptic "
-             left_click_ViewandUpgrade='opens MX Apt Notifier "View and Upgrade" window'
-             use_apt_get_dash_dash_yes="use apt-get's --yes option for upgrade/dist-upgrade"
-             auto_close_term_window_when_complete="automatically close terminal window when apt-get upgrade/dist-upgrade complete" ;;
+         el) window_title="MX Apt Notifier προτιμήσεις"
+             frame_upgrade_behaviour="  αναβάθμιση (επηρεάζει επίσης καταμέτρηση κοινοποίηση)   "
+             frame_left_click_behaviour="  αριστερό κλικ (όταν υπάρχουν διαθέσιμες ενημερώσεις)   "
+             left_click_Synaptic="ανοίγει το  Synaptic "
+             left_click_ViewandUpgrade='ανοίγει το παράθυρο "Προβολή και Αναβάθμιση" του MX Apt Notifier'
+             use_apt_get_dash_dash_yes="χρησιμοποιήσετε την επιλογή του apt-get --yes option για την αναβάθμιση"
+             auto_close_term_window_when_complete="Να κλείσει αυτόματα το παράθυρο τερματικού όταν το apt-get upgrade/dist-upgrade έχει ολοκληρωθεί" ;;
 
          es) window_title="MX preferencias de Apt Notifier"
              frame_upgrade_behaviour="  comportamiento de actualización (también afecta la cuenta de notificaciones)   "
@@ -949,6 +1019,7 @@ def main():
     global quit_action    
     global Timer
     global initialize_aptnotifier_prefs
+    set_translations()
     initialize_aptnotifier_prefs()
     AptNotify = QtGui.QApplication(sys.argv)
     AptIcon = QtGui.QSystemTrayIcon()
