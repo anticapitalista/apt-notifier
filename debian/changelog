@@ -1,3 +1,80 @@
+apt-notifier (1.1.5mx150+2) mx; urgency=medium
+
+  * fix width calculation (lop off decimal portion)
+  * change leftclick default to 'View and Upgrade'
+  * change UpgradeType default to 'dist-upgrade'
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Fri, 13 Nov 2015 13:34:11 -0500
+
+apt-notifier (1.1.5mx150+1) mx; urgency=medium
+
+  * add Apt History rightclick action 
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Wed, 11 Nov 2015 11:08:19 -0500
+
+apt-notifier (1.1.4mcr120+9) mepis; urgency=low
+
+  * update apt-notifier help link
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Wed, 03 Jun 2015 18:37:08 -0400
+
+apt-notifier (1.1.4-0mx150+1) mx; urgency=medium
+
+  * Repackaged for MX 15..
+
+ -- Mike Purtell <mandbx@sbcglobal.net>  Sat, 30 May 2015 20:38:49 -0700
+
+apt-notifier (1.1.4mcr120+8) mepis; urgency=low
+
+  * Don't show Synaptic pinned packages that include an epoch in their version
+    number, in the 'View and Upgrade' preview window.
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Mon, 25 May 2015 10:10:10 -0400
+
+apt-notifier (1.1.4mcr120+7) mepis; urgency=low
+
+  * Start a singleshot timer (50 msec.) after closing Synaptic or the 'View and 
+    Upgrade' window. While the singleshot timer is running, don't process clicks
+    to start Synaptic, or to open the 'View and Upgrade' window. This flushes out
+    stored/errant clicks that occurred while Synaptic or the 'View and Upgrade'
+    window were open.
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Thu, 21 May 2015 08:39:33 -0400
+
+apt-notifier (1.1.4mcr120+6) mepis; urgency=low
+
+  * Added Polish translations
+  * Corrected typos
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Mon, 20 Apr 2015 22:50:56 -0400
+
+apt-notifier (1.1.4mcr120+5) mepis; urgency=low
+
+  * Display help in mx-viewer if it's installed
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Wed, 25 Mar 2015 08:43:36 -0400
+
+apt-notifier (1.1.4mcr120+4) mepis; urgency=low
+
+  * update apt-notifier help link
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Fri, 20 Mar 2015 19:21:41 -0400
+
+apt-notifier (1.1.4mcr120+3) mepis; urgency=low
+
+  * Rebuild for MEPIS 12 CR:
+
+    Kent Mathern <maintainer@mepiscommunity.org>  
+
+  * translations added to apt-notifier-autostart-xdg.desktop
+  * translations added to apt-notifier-autostart.desktop
+  * modify commands that open gksu and kdesu dialogs
+  * update apt-notifier & synaptic help links
+
+
+ -- Steven Pusser (Stevo) <maintainer@mepiscommunity.org>  Sat, 21 Feb 2015 18:39:35 -0800
+
+
 apt-notifier (1.1.4mcr120+2) mepis; urgency=low
 
   * Greek localizations updated.

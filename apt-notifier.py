@@ -37,6 +37,9 @@ def set_translations():
     global Apt_Notifier_Help
     global Synaptic_Help
     global Apt_Notifier_Preferences    
+    global Apt_History
+    global ignoreClick
+    ignoreClick = '0'
 
     tooltip_0_updates_available = u"0 updates available"
     tooltip_1_new_update_available = u"1 new update available"
@@ -52,7 +55,8 @@ def set_translations():
     Apt_Notifier_Help = u"Apt-Notifier Help"
     Synaptic_Help = u"Synaptic Help"
     Apt_Notifier_Preferences = u"Apt Notifier Preferences"
-
+    Apt_History = u"Apt History"
+    
     if locale == "ca":
         tooltip_0_updates_available = u"No hi ha actualitzacions disponibles"
         tooltip_1_new_update_available = u"1 actualització disponible"
@@ -68,6 +72,7 @@ def set_translations():
         Apt_Notifier_Help = u"Ajuda d'Apt-Notifier"
         Synaptic_Help = u"Ajuda de Synaptic"
         Apt_Notifier_Preferences = u"Preferències d'Apt Notifier"
+        Apt_History = u"Apt History"
 
     elif locale == "de":
         tooltip_0_updates_available = u"0 Updates verfügbar"
@@ -84,6 +89,7 @@ def set_translations():
         Apt_Notifier_Help = u"Apt-Notifier Hilfe"
         Synaptic_Help = u"Synaptic Hilfe"
         Apt_Notifier_Preferences = u"Apt Notifier Einstellungen"
+        Apt_History = u"Apt History"
 
     elif locale == "el":
         tooltip_0_updates_available = u"0 διαθέσιμες ενημερώσεις"
@@ -100,6 +106,7 @@ def set_translations():
         Apt_Notifier_Help = u"Apt-Notifier Βοήθεια"
         Synaptic_Help = u"Synaptic Βοήθεια"
         Apt_Notifier_Preferences = u"Apt Notifier Προτιμήσεις"
+        Apt_History = u"Apt History"
 
     elif locale == "es":
         tooltip_0_updates_available = u"0 actualizaciones disponibles"
@@ -116,6 +123,7 @@ def set_translations():
         Apt_Notifier_Help = u"Ayuda de Apt-Notifier"
         Synaptic_Help = u"Ayuda de Synaptic"
         Apt_Notifier_Preferences = u"Preferencias de Apt Notifier"
+        Apt_History = u"Apt History"
 
     elif locale == "fr":
         tooltip_0_updates_available = u"0 mises à jour disponibles"
@@ -129,9 +137,10 @@ def set_translations():
         View_and_Upgrade = u"Voir et mettre à niveau"
         Hide_until_updates_available = u"Cacher jusqu'à ce que des mises à niveau soient disponibles"
         Quit_Apt_Notifier = u"Annuler Apt-Notifier"
-        Apt_Notifier_Help = u"Aide sur Apt-notifier"
+        Apt_Notifier_Help = u"Aide sur Apt-Notifier"
         Synaptic_Help = u"Aide sur Synaptic"
         Apt_Notifier_Preferences = u"Préferences pour Apt Notifier"
+        Apt_History = u"Apt History"
 
     elif locale == "it":
         tooltip_0_updates_available = u"0 aggiornamenti disponibili"
@@ -145,9 +154,10 @@ def set_translations():
         View_and_Upgrade = u"Mostra e aggiorna"
         Hide_until_updates_available = u"Nascondi finchè non hai aggiornamenti disponibili"
         Quit_Apt_Notifier = u"Chiudi Apt-Notifier"
-        Apt_Notifier_Help = u"Aiuto su Apt-notifier"
+        Apt_Notifier_Help = u"Aiuto su Apt-Notifier"
         Synaptic_Help = u"Aiuto su Synaptic"
         Apt_Notifier_Preferences = u"Preferenze per Apt Notifier"
+        Apt_History = u"Apt History"
 
     elif locale == "ja":
         tooltip_0_updates_available = u"0 新たな更新はありません"
@@ -164,6 +174,7 @@ def set_translations():
         Apt_Notifier_Help = u"Apt-Notifier ヘルプ"
         Synaptic_Help = u"Synaptic ヘルプ"
         Apt_Notifier_Preferences = u"Apt Notifier 設定"
+        Apt_History = u"Apt History"
 
     elif locale == "nl":
         tooltip_0_updates_available = u"0 updates available"
@@ -180,6 +191,24 @@ def set_translations():
         Apt_Notifier_Help = u"Apt-Notifier Help"
         Synaptic_Help = u"Synaptic Help"
         Apt_Notifier_Preferences = u"Apt Notifier Preferences"
+        Apt_History = u"Apt History"
+
+    elif locale == "pl":
+        tooltip_0_updates_available = u"0 Aktualizacje są dostępne"
+        tooltip_1_new_update_available = u"1 Aktualizacja dostępna"
+        tooltip_multiple_new_updates_available = u" Dostępne nowe aktualizacje"
+        popup_title = u"Aktualizacje"
+        popup_msg_1_new_update_available = u"Dostępna jest nowa aktualizacja"
+        popup_msg_multiple_new_updates_available_begin = u"Masz dostępnych "
+        popup_msg_multiple_new_updates_available_end = u" nowych aktualizacji"
+        Upgrade_using_Synaptic = u"Aktualizuj korzystając z Synaptic"
+        View_and_Upgrade = u"Przeglądaj i Aktualizować"
+        Hide_until_updates_available = u"Ukryj aż będą dostępne aktualizacje"
+        Quit_Apt_Notifier = u"Wyjdź z Apt-Notifier"
+        Apt_Notifier_Help = u"Pomoc Apt-Notifier"
+        Synaptic_Help = u"Pomoc Synaptic"
+        Apt_Notifier_Preferences = u"Apt Notifier Ustawienia"
+        Apt_History = u"Apt History"
 
     elif locale == "sv":
         tooltip_0_updates_available = u"0 uppdateringar tillgängliga"
@@ -196,6 +225,7 @@ def set_translations():
         Apt_Notifier_Help = u"Apt-Notifier Hjälp"
         Synaptic_Help = u"Synaptic Hjälp"
         Apt_Notifier_Preferences = u"Apt Notifier Inställningar"
+        Apt_History = u"Apt History"
 
     else:
         pass
@@ -217,7 +247,7 @@ def check_updates():
             #/var/lib/synaptic/preferences is a non-zero size file, which means there are packages pinned in Synaptic. 
             #Remove from the sorted_list_of_upgrades, packages that are pinned in Synaptic, and then get a count of remaining.
             
-            sorted_list_of_upgrades | grep -vx $(grep 'Package:' /var/lib/synaptic/preferences | awk {'print "-e " $2'}) | wc -l
+            sorted_list_of_upgrades | grep -vx $(grep 'Package:' /var/lib/synaptic/preferences 2>/dev/null | awk {'print "-e " $2'}) | wc -l
         
         else 
             #/var/lib/synaptic/preferences is either a zero byte file, meaning packages were pinned in Synaptic at some time in 
@@ -377,6 +407,17 @@ def viewandupgrade():
              done2="'this terminal window can now be closed '" 
              done3="'(press any key to close)'" ;;
 
+      pl)    window_title="MX Apt Notifier--Przeglądaj i Aktualizować, podglądu: apt-get "
+             use_apt_get_dash_dash_yes="stosować apt-get --yes opcję  dla "
+             auto_close_term_window1="zostały automatycznie zamknięte okno terminalu przy apt-get "
+             auto_close_term_window2=" gotowy"
+             switch_to1="Przełącz na 'apt-get "
+             switch_to2=""
+             done0="Komenda " 
+             done1=' została wykonana (lub przerwana)"' 
+             done2="'Okno to można zamknąć teraz '" 
+             done3="'(naciśnij dowolny klawisz, aby zamknąć)'" ;;
+
       sv)    window_title="MX Apt Notifier--Granska och Uppgradera, förhandsgranskning: apt-get "
              use_apt_get_dash_dash_yes="använd apt-get's --yes möjlighet för "
              auto_close_term_window1="stäng automatiskt terminalfönstret när apt-get "
@@ -399,11 +440,12 @@ def viewandupgrade():
       case $1 in
         0)
         BP="1"
+        chmod +x $TMP/upgradeScript
         TermXOffset="$(xwininfo -root|awk '/Width/{print $2/4}')"
         TermYOffset="$(xwininfo -root|awk '/Height/{print $2/4}')"
-        Geometry="--geometry=80x25+"$TermXOffset"+"$TermYOffset
-        Icon="--icon=/usr/share/icons/mnotify-some.png"
-        Title="--title='""$(grep -o MX-[1-9][0-9] /etc/issue|cut -c1-2)"" apt-notifer: apt-get "$UpgradeType"'" 
+        G=" --geometry=80x25+"$TermXOffset"+"$TermYOffset
+        I=" --icon=mnotify-some"
+        T=" --title='""$(grep -o MX-[1-9][0-9] /etc/issue|cut -c1-2)"" apt-notifier: apt-get "$UpgradeType"'"
         if (xprop -root | grep -q -i kde)
           then
 
@@ -422,28 +464,23 @@ def viewandupgrade():
 
             case $(readlink -e /usr/bin/x-terminal-emulator | xargs basename) in
 
-                             konsole) kdesu -c "konsole \
-                                      -e bash $TMP/upgradeScript"
+                             konsole) kdesu -c "konsole -e $TMP/upgradeScript"
                                       sleep 5
                                       ;;
 
-              xfce4-terminal.wrapper) kdesu -c "xfce4-terminal \
-                                      $Geometry $Icon $Title \
-                                      -e 'bash $TMP/upgradeScript'"
+              xfce4-terminal.wrapper) kdesu -c "xfce4-terminal$G$I$T -e $TMP/upgradeScript"
                                       ;;
 
                                xterm) if [ -e /usr/bin/konsole ]
                                         then
-                                          kdesu -c "konsole \
-                                          -e bash $TMP/upgradeScript"
+                                          kdesu -c "konsole -e $TMP/upgradeScript"
                                           sleep 5
                                         else
-                                          kdesu -c "xterm \
-                                          -e bash $TMP/upgradeScript"
+                                          kdesu -c "xterm -e $TMP/upgradeScript"
                                       fi
                                       ;;
 
-                                   *) :
+                                   *) kdesu -c "x-terminal-emulator -e $TMP/upgradeScript"
                                       ;;
             esac
 
@@ -463,28 +500,22 @@ def viewandupgrade():
 
             case $(readlink -e /usr/bin/x-terminal-emulator | xargs basename) in
 
-                             konsole) su-to-root -X -c "konsole \
-                                      -e  bash $TMP/upgradeScript"
+                             konsole) su-to-root -X -c "konsole -e $TMP/upgradeScript"
                                       sleep 5
                                       ;;
 
-              xfce4-terminal.wrapper) su-to-root -X -c "xfce4-terminal \
-                                      $Geometry $Icon $Title \
-                                      -e 'bash $TMP/upgradeScript'"
+              xfce4-terminal.wrapper) su-to-root -X -c "xfce4-terminal$G$I$T -e $TMP/upgradeScript"
                                       ;;
 
                                xterm) if [ -e /usr/bin/xfce4-terminal ]
                                         then
-                                          su-to-root -X -c "xfce4-terminal \
-                                          $Geometry $Icon $Title \
-                                          -e 'bash $TMP/upgradeScript'"
+                                          su-to-root -X -c "xfce4-terminal$G$I$T -e $TMP/upgradeScript"
                                         else
-                                          su-to-root -X -c "xterm \
-                                          -e  bash $TMP/upgradeScript"
+                                          su-to-root -X -c "xterm -e $TMP/upgradeScript"
                                       fi
                                       ;;
 
-                                   *) :
+                                   *) su-to-root -X -c "x-terminal-emulator -e $TMP/upgradeScript"
                                       ;;
 
             esac
@@ -530,9 +561,9 @@ def viewandupgrade():
         #for i in $(grep ^Package: /var/lib/synaptic/preferences 2>/dev/null | awk '{print $2}' 2>/dev/null); do sed -i '/'$i' (.*=>.*)/d' "$TMP"/upgrades 2>/dev/null; done
         
         #remove Synaptic pinned packages from "$TMP"/upgrades, so they don't get displayed in the 'View and Upgrade' window -- new method
-        for i in $(grep -A1 Package: /var/lib/synaptic/preferences | sed 's/Package: //; s/Pin: version /@/; /--/d' | awk 'ORS=" "' | sed 's/ @/_/g');\
+        for i in $(grep -A1 Package: /var/lib/synaptic/preferences 2>/dev/null | sed 's/Package: //; s/Pin: version /@/; /--/d' | awk 'ORS=" "' | sed 's/ @/_/g');\
           do \
-            j="$(echo $i | sed 's/_/ /' | awk '{print $1" ("$2" =>"}')";\
+            j="$(echo $i | sed 's/_/ /' | sed 's/[0-9]*[:]//' | awk '{print $1" ("$2" =>"}')";\
             sed -i '/'"$j"'/d' "$TMP"/upgrades 2>/dev/null;\
           done
 
@@ -602,12 +633,12 @@ def viewandupgrade():
         echo "#!/bin/bash"> "$TMP"/upgradeScript
         echo "echo 'apt-get '"$UpgradeType>> "$TMP"/upgradeScript
         echo 'SynapticPins=$(mktemp /etc/apt/preferences.d/synaptic-XXXXXX-pins)'>> "$TMP"/upgradeScript
-        echo 'ln -sf /var/lib/synaptic/preferences "$SynapticPins" 2>/dev/null'>> "$TMP"/upgradeScript
+        echo 'if [ -e /var/lib/synaptic/preferences ]; then ln -sf /var/lib/synaptic/preferences "$SynapticPins" 2>/dev/null; fi'>> "$TMP"/upgradeScript
         if [ "$UpgradeAssumeYes" = "true" ];
           then
-            echo "apt-get -q --assume-yes "$UpgradeType>> "$TMP"/upgradeScript
+            echo "apt-get --assume-yes "$UpgradeType>> "$TMP"/upgradeScript
           else
-            echo "apt-get -q "$UpgradeType>> "$TMP"/upgradeScript
+            echo "apt-get "$UpgradeType>> "$TMP"/upgradeScript
         fi 
         echo "echo">> "$TMP"/upgradeScript
         echo 'rm -f "$SynapticPins"'>> "$TMP"/upgradeScript
@@ -665,10 +696,10 @@ def initialize_aptnotifier_prefs():
       #
       #if a UpgradeType=* line not present,
       #or not equal to "upgrade" or "dist-upgrade"
-      #initially set it to "UpgradeType=upgrade"
+      #initially set it to "UpgradeType=dist-upgrade"
       #also delete multiple entries or what appears to be invalid entries
       sed -i '/.*UpgradeType.*/Id' ~/.config/apt-notifierrc 
-      echo "UpgradeType=upgrade">> ~/.config/apt-notifierrc
+      echo "UpgradeType=dist-upgrade">> ~/.config/apt-notifierrc
     fi
 
     #test if ~/.config/apt-notifierrc contains a UpgradeAssumeYes=* line and that it's a valid entry
@@ -713,10 +744,10 @@ def initialize_aptnotifier_prefs():
       #
       #if a LeftClick line not present,
       #or not equal to "ViewAndUpgrade" or "Synaptic"
-      #initially set it to "LeftClick=Synaptic"
+      #initially set it to "LeftClick=ViewAndUpgrade"
       #also delete multiple entries or what appears to be invalid entries
       sed -i '/.*LeftClick.*/Id' ~/.config/apt-notifierrc 
-      echo "LeftClick=Synaptic">> ~/.config/apt-notifierrc
+      echo "LeftClick=ViewAndUpgrade">> ~/.config/apt-notifierrc
     fi
 
     #cleanup any blank lines or lines with only whitespace
@@ -807,6 +838,14 @@ def aptnotifier_prefs():
              left_click_ViewandUpgrade='opens MX Apt Notifier "View and Upgrade" window'
              use_apt_get_dash_dash_yes="use apt-get's --yes option for upgrade/dist-upgrade"
              auto_close_term_window_when_complete="automatically close terminal window when apt-get upgrade/dist-upgrade complete" ;;
+
+         pl) window_title="MX Apt Notifier Ustawienia"
+             frame_upgrade_behaviour="  zachowanie aktualizacji   (również wpływ na liczbę powiadomień)   "
+             frame_left_click_behaviour="  Zachowanie lewego przycisku myszy   (gdy dostępne są nowe aktualizacje)   "
+             left_click_Synaptic="otwiera Synaptic "
+             left_click_ViewandUpgrade='otwiera MX Apt Notifier "Przeglądaj i Aktualizować" okno'
+             use_apt_get_dash_dash_yes="stosować apt-get's --yes opcję  dla upgrade/dist-upgrade"
+             auto_close_term_window_when_complete="zostały automatycznie zamknięte okno terminalu przy upgrade/dist-upgrade gotowy" ;;
 
          sv) window_title="MX Apt Notifier inställningar"
              frame_upgrade_behaviour="  uppgraderingsbeteende (påverkar också antalet i meddelandena)   "
@@ -920,18 +959,74 @@ EOF
     script_file.close()
     check_updates()
 
+def apt_history():
+    script = '''#! /bin/bash
+    
+    TMP=$(mktemp -d /tmp/apt_history.XXXXXX)
+    
+    zgrep -EH ' install | upgrade | purge | remove ' /var/log/dpkg* | cut -f2- -d: | sort -r | \
+    sed 's/ remove / remove  /;s/ purge / purge   /' | \
+    sed 's/:all//;s/:i386//;s/:amd64//' | column -t > "$TMP"/APT_HISTORY
+    
+    yad --window-icon=/usr/share/icons/mnotify-some.png \
+        --width=$(xprop -root | grep _NET_DESKTOP_GEOMETRY\(CARDINAL\) | awk '{print $3*.75}' | cut -f1 -d.) \
+        --height=480 \
+        --center \
+        --title "apt history" \
+        --text-info \
+        --filename="$TMP"/APT_HISTORY \
+        --fontname=mono \
+        --button=gtk-cancel \
+        --margins=7 \
+        --borders=5
+        
+    rm -rf "$TMP"    
+    
+    '''
+    script_file = tempfile.NamedTemporaryFile('wt')
+    script_file.write(script)
+    script_file.flush()
+    run = subprocess.Popen(['sh %s' % script_file.name],shell=True).wait()
+    script_file.close()
+    check_updates()
+    
+
+def re_enable_click():
+    global ignoreClick
+    ignoreClick = '0'
+
+def start_synaptic0():
+    global ignoreClick
+    global Timer
+    if ignoreClick != '1':
+        start_synaptic()    
+        ignoreClick = '1'
+        Timer.singleShot(50, re_enable_click)
+    else:
+        pass
+
+def viewandupgrade0():
+    global ignoreClick
+    global Timer
+    if ignoreClick != '1':
+        viewandupgrade()    
+        ignoreClick = '1'
+        Timer.singleShot(50, re_enable_click)
+    else:
+        pass
+
 # Define the command to run when left clicking on the Tray Icon
 def left_click():
     if text.startswith( "0" ):
-        start_synaptic()
+        start_synaptic0()
     else:
         """Test ~/.config/apt-notifierrc for LeftClickViewAndUpgrade"""
         command_string = "cat " + rc_file_name + " | grep -q LeftClick=ViewAndUpgrade"
         exit_state = subprocess.call([command_string], shell=True, stdout=subprocess.PIPE)
         if exit_state == 0:
-            viewandupgrade()
+            viewandupgrade0()
         else:
-            start_synaptic()
+            start_synaptic0()
 
 # Define the action when left clicking on Tray Icon
 def left_click_activated(reason):
@@ -964,10 +1059,11 @@ def add_rightclick_actions():
     exit_state = subprocess.call([command_string], shell=True, stdout=subprocess.PIPE)
     if exit_state == 0:
         process_updates_action = ActionsMenu.addAction(Upgrade_using_Synaptic)
-        AptNotify.connect(process_updates_action, QtCore.SIGNAL("triggered()"), start_synaptic)
+        AptNotify.connect(process_updates_action, QtCore.SIGNAL("triggered()"), start_synaptic0)
     else:
         process_updates_action = ActionsMenu.addAction(View_and_Upgrade)
-        AptNotify.connect(process_updates_action, QtCore.SIGNAL("triggered()"), viewandupgrade)
+        AptNotify.connect(process_updates_action, QtCore.SIGNAL("triggered()"), viewandupgrade0)
+    add_apt_history_action()        
     add_apt_notifier_help_action()
     add_synaptic_help_action()
     add_quit_action()
@@ -978,6 +1074,7 @@ def add_hide_action():
     if icon_config == "show":
         hide_action = ActionsMenu.addAction(Hide_until_updates_available)
         AptNotify.connect(hide_action,QtCore.SIGNAL("triggered()"),set_noicon)
+    add_apt_history_action()    
     add_apt_notifier_help_action()
     add_synaptic_help_action()
     add_quit_action()
@@ -994,7 +1091,14 @@ def add_apt_notifier_help_action():
     apt_notifier_help_action.triggered.connect(open_apt_notifier_help)
     
 def open_apt_notifier_help():
-    subprocess.Popen(['xdg-open http://www.mepiscommunity.org/doc_mx/mxapps.html#notify'],shell=True)
+    """ check if mx-viewer is installed, if it is use it to display help, otherwise use xdg-open """
+    command_string = "test -e /usr/bin/mx-viewer"
+    exit_state = subprocess.call([command_string], shell=True, stdout=subprocess.PIPE)
+    if exit_state == 0:
+        subprocess.Popen(['mx-viewer http://mepiscommunity.org/wiki/help-files/help-mx-apt-notifier'],shell=True)
+    else:
+        subprocess.Popen(['xdg-open  http://mepiscommunity.org/wiki/help-files/help-mx-apt-notifier'],shell=True) 
+
     
 def add_synaptic_help_action():
     ActionsMenu.addSeparator()
@@ -1002,12 +1106,23 @@ def add_synaptic_help_action():
     synaptic_help_action.triggered.connect(open_synaptic_help)
     
 def open_synaptic_help():
-    subprocess.Popen(['xdg-open http://www.mepiscommunity.org/doc_mx/synaptic.html'],shell=True)
+    """ check if mx-viewer is installed, if it is use it to display help, otherwise use xdg-open """
+    command_string = "test -e /usr/bin/mx-viewer"
+    exit_state = subprocess.call([command_string], shell=True, stdout=subprocess.PIPE)
+    if exit_state == 0:
+        subprocess.Popen(['mx-viewer http://www.mepiscommunity.org/user_manual_mx15/mxum.html#toc-Subsection-5.3'],shell=True)
+    else:
+        subprocess.Popen(['xdg-open  http://www.mepiscommunity.org/user_manual_mx15/mxum.html#toc-Subsection-5.3'],shell=True)
 
 def add_aptnotifier_prefs_action():
     ActionsMenu.addSeparator()
     aptnotifier_prefs_action =  ActionsMenu.addAction(Apt_Notifier_Preferences)
     AptNotify.connect(aptnotifier_prefs_action,QtCore.SIGNAL("triggered()"), aptnotifier_prefs)
+
+def add_apt_history_action():
+    ActionsMenu.addSeparator()
+    apt_history_action =  ActionsMenu.addAction(Apt_History)
+    AptNotify.connect(apt_history_action,QtCore.SIGNAL("triggered()"), apt_history)
 
 # General application code	
 def main():
