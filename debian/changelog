@@ -1,3 +1,113 @@
+apt-notifier (1.3.4mx160+1) mepis; urgency=medium
+
+  * new icons, mx16
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Thu, 20 Oct 2016 16:00:33 -0400
+
+apt-notifier (1.3.4mcr120+1) mepis; urgency=medium
+
+  * Rebuild for Mepis 12 & MX-14
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Sat, 30 Jul 2016 18:25:33 -0400
+
+apt-notifier (1.3.4mx150+1) mx; urgency=medium
+
+  * clean up gksu message
+  * add cron.daily job to do live update sooner
+  * disable epoch fix
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Sat, 30 Jul 2016 18:17:33 -0400
+
+apt-notifier (1.3.3mcr120+1) mepis; urgency=medium
+
+  * Rebuild for Mepis 12 & MX-14
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Thu, 16 Jun 2016 16:27:19 -0400
+
+apt-notifier (1.3.3mx150+1) mx; urgency=medium
+
+  * preferences dialog improvements
+  * tooltip added to 'switch to apt-get ...' button
+  * using a better way to create "$TMP"/upgrades file
+  * added fix to display epochs in 'View and Upgrade' preview window
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Thu, 16 Jun 2016 16:21:11 -0400
+
+apt-notifier (1.3.2mcr120+1) mepis; urgency=medium
+
+  * Rebuild for Mepis 12 & MX-14 
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Fri, 10 Jun 2016 10:09:04 -0400
+
+apt-notifier (1.3.2mx150+1) mx; urgency=medium
+
+  * remove MX-Utilities category from .desktop file
+  * add tooltip to Reload button
+  * better whitespace test
+  * unhide-Icon script, only delete the 'DontShowIcon blah blah' line if it's present
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Fri, 10 Jun 2016 10:00:30 -0400
+
+apt-notifier (1.3.1mcr120+1) mepis; urgency=medium
+
+  * Rebuild for Mepis 12 & MX-14
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Mon, 06 Jun 2016 19:59:39 -0400
+
+apt-notifier (1.3.1mx150+1) mx; urgency=medium
+
+  * 'apt-get update' button renamed to 'Reload'
+  * /usr/bin/apt-notifier - only modify apt-notifierrc if
+    whitespace lines/blank lines are present
+  * mx-apt-notifier-menu.desktop - add MX-Utilities category
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Mon, 06 Jun 2016 19:49:21 -0400
+
+apt-notifier (1.3.0mcr120+2) mepis; urgency=medium
+
+  * Rebuild for Mepis 12 & MX-14
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Mon, 23 May 2016 14:09:46 -0400
+
+apt-notifier (1.3.0mx150+2) mx; urgency=medium
+
+  * only update apt-notifierrc when checkbox items have been changed 
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Mon, 23 May 2016 13:57:41 -0400
+
+apt-notifier (1.3.0mcr120+1) mepis; urgency=medium
+
+  * Rebuild for Mepis 12 & MX-14
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Sun, 22 May 2016 20:56:07 -0400
+
+apt-notifier (1.3.0mx150+1) mx; urgency=medium
+
+  * 'View and Upgrade' apt-get update button added
+  * kdesu and konsole fixes
+  * only sed edit apt-notifierrc when whitespace and/or blank lines are present
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Sun, 22 May 2016 20:43:06 -0400
+
+apt-notifier (1.2.0mcr120+2) mepis; urgency=medium
+
+  * Rebuild for Mepis 12 & MX-14
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Sat, 07 May 2016 17:58:28 -0400
+
+apt-notifier (1.2.0mx150+2) mx; urgency=medium
+
+  * added autoremove translations
+  * have Apt History use a separate apt-history script 
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Sat, 07 May 2016 17:52:39 -0400
+
+apt-notifier (1.2.0mx150+1) mx; urgency=medium
+
+  * added option - check for autoremoves after upgrades
+
+ -- Kent Mathern <maintainer@mepiscommunity.org>  Sun, 01 May 2016 19:53:05 -0400
+
 apt-notifier (1.1.5mcr120+5) mepis; urgency=medium
 
   * Rebuild for Mepis 12 & MX-14
